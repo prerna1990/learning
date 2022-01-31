@@ -72,30 +72,43 @@ public class GameService {
 
 	public List<Score> scoreListPage(ConditionRQ conditionRq) {
 
-		String name = conditionRq.getPlayerName();
 		int pageNo = (conditionRq.getPageNo() != null) ? conditionRq.getPageNo() : 1;
 		int pageSize = (conditionRq.getPageSize() != null) ? conditionRq.getPageSize() : 3;
 
 		Timestamp startTime = getStartOfDay(conditionRq.getStartTime());
 		Timestamp endTime = getEndOfDay(conditionRq.getEndTime());
+		Pageable sortedByName = PageRequest.of(pageNo, pageSize, Sort.by("playerName").and(Sort.by("time")));
 
-		if (name != null && name.trim().length() > 0) {
+		/*
+		 * "Get all scores by playerX" "Get all score after 1st November 2020"
+		 * "Get all scores by player1, player2 and player3 before 1st december 2020"
+		 * "Get all scores after 1 Jan 2020 and before 1 Jan 2021"
+		 */
+		switch (getTypeOfQuery(conditionRq)) {
+		case 1:
+			return repository.findAllPlayersForPeriod(conditionRq.getPlayerNames(), endTime, sortedByName);
+		case 2:
+			return repository.findAllPlayersForPeriod(startTime, endTime, sortedByName);
+		case 3:
+			return repository.findAllByPlayerName(conditionRq.getPlayerName(), sortedByName);
+		case 4:
+			return repository.findAllPlayersForPeriod(startTime, sortedByName);
+		}
+		return new ArrayList<Score>();
 
-			Pageable sortedByName = PageRequest.of(pageNo, pageSize, Sort.by("playerName"));
+	}
 
-			if (!CollectionUtils.isEmpty(conditionRq.getPlayerNames()) && endTime != null)
-				return repository.findAllPlayersForPeriod(conditionRq.getPlayerNames(), endTime);
-			else if (startTime != null && endTime != null)
-				return repository.findAllPlayersForPeriod(startTime, endTime);
-			else
-				return repository.findAllByPlayerName(conditionRq.getPlayerName(), sortedByName); // assumptions name
-																									// would be there at
-																									// least.
+	private int getTypeOfQuery(ConditionRQ conditionRq) {
 
-		} else if (startTime != null && endTime != null)
-			return repository.findAllPlayersForPeriod(startTime, endTime);
-		else // assumption that start date will present at least for query.
-			return repository.findAllPlayersForPeriod(startTime);
+		if (!CollectionUtils.isEmpty(conditionRq.getPlayerNames()) && conditionRq.getEndTime() != null)
+			return 1;
+		if (conditionRq.getStartTime() != null && conditionRq.getEndTime() != null)
+			return 2;
+		if (conditionRq.getPlayerName() != null && conditionRq.getPlayerName().trim().length() > 0)
+			return 3;
+		if (conditionRq.getStartTime() != null)
+			return 4;
+		return 0;
 
 	}
 

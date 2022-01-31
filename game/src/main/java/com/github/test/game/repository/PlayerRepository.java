@@ -16,13 +16,13 @@ public interface PlayerRepository extends PagingAndSortingRepository<Score, Inte
 	public List<Score> findPlayers(String playerName);
 
 	@Query(value = "select * FROM Score WHERE time > ? and time < ? ", nativeQuery = true)
-	public List<Score> findAllPlayersForPeriod(Timestamp start, Timestamp end);
+	public List<Score> findAllPlayersForPeriod(Timestamp start, Timestamp end,Pageable sortedByName);
 
 	@Query(value = "select * FROM Score WHERE time > ? ", nativeQuery = true)
-	public List<Score> findAllPlayersForPeriod(Timestamp start);
+	public List<Score> findAllPlayersForPeriod(Timestamp start,Pageable sortedByName);
 
 	@Query(value = "select * FROM Score WHERE playerName in ? and time < ? ", nativeQuery = true)
-	public List<Score> findAllPlayersForPeriod(List<String> playerNames, Timestamp end);
+	public List<Score> findAllPlayersForPeriod(List<String> playerNames, Timestamp end, Pageable sortedByName);
 
 	public List<Score> findByPlayerNameAndScore(String playerName, Integer score);
 
