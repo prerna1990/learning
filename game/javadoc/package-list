@@ -1,0 +1,6 @@
+com.github.test.game
+com.github.test.game.controller
+com.github.test.game.domain
+com.github.test.game.dto
+com.github.test.game.repository
+com.github.test.game.service
