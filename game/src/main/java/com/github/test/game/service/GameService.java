@@ -28,11 +28,12 @@ public class GameService {
 	@Autowired
 	private PlayerRepository repository;
 
-	public String deleteById(Integer id) {
+	public String deleteById(Integer id) throws Exception {
 		try {
 			repository.deleteById(id);
 		} catch (Exception e) {
-			return "Id not found " + id;
+//			return "Id not found " + id;
+			throw new Exception("Id not found " + id);
 		}
 		return "Ok";
 	}
@@ -54,7 +55,6 @@ public class GameService {
 	}
 
 	public Score save(Score score) {
-
 		if (score.getScore() != null && score.getScore() > 0) {
 			return repository.save(score);
 		}
@@ -71,7 +71,7 @@ public class GameService {
 	}
 
 	public List<Score> scoreListPage(ConditionRQ conditionRq) {
-
+		//Default size if no inputs received.
 		int pageNo = (conditionRq.getPageNo() != null) ? conditionRq.getPageNo() : 1;
 		int pageSize = (conditionRq.getPageSize() != null) ? conditionRq.getPageSize() : 3;
 

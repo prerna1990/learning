@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +18,7 @@ import com.github.test.game.dto.PlayerHistoryRS;
 import com.github.test.game.service.GameService;
 
 @RestController
-@RequestMapping("/game")
+//@RequestMapping("/game")
 public class GameController {
 
 	@Autowired
@@ -48,7 +47,7 @@ public class GameController {
 	 * @return matched result
 	 */
 	@PostMapping("/searchScoreList")
-	public List<Score> search(@RequestBody ConditionRQ conditionRq) {
+	public List<Score> searchScoreList(@RequestBody ConditionRQ conditionRq) {
 		return gameService.scoreListPage(conditionRq);
 
 	}
@@ -58,9 +57,10 @@ public class GameController {
 	 * 
 	 * @param scoreId id of the score to delete
 	 * @return Ok - when deleted. Id not found - when not found.
+	 * @throws Exception
 	 */
 	@DeleteMapping("/deleteScore/{id}")
-	public String delete(@PathVariable("id") Integer scoreId) {
+	public String deleteScore(@PathVariable("id") Integer scoreId) throws Exception {
 		return gameService.deleteById(scoreId);
 
 	}
@@ -72,7 +72,7 @@ public class GameController {
 	 * @return core if available
 	 */
 	@GetMapping("/getScore/{id}")
-	public Optional<Score> get(@PathVariable("id") Integer scoreId) {
+	public Optional<Score> getScore(@PathVariable("id") Integer scoreId) {
 		return gameService.findByScoreId(scoreId);
 
 	}
