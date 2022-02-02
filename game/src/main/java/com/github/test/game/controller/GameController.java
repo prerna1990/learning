@@ -1,5 +1,7 @@
 package com.github.test.game.controller;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,17 +87,14 @@ public class GameController {
 	 */
 	@GetMapping("/history/{playerName}")
 	public @ResponseBody PlayerHistoryRS getHistory(@PathVariable("playerName") String playerName) {
-		return gameService.findHistory(playerName);
+		return gameService.findHistory(removeHtml(playerName));
 
 	}
 
-	// Added for test purpose.
-
-	@PostMapping("/addall")
-	public Iterable<Score> list(@RequestBody List<Score> players) {
-//		players.forEach(player -> player.setTime(new Timestamp(System.currentTimeMillis())));
-		return gameService.saveAll(players);
-
+	private String removeHtml(String playerName) {
+		
+		return playerName.replaceAll("%20"," ");
 	}
+
 
 }

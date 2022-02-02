@@ -28,6 +28,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.test.game.domain.Score;
+import com.github.test.game.dto.PlayerHistoryRS;
 import com.github.test.game.repository.PlayerRepository;
 
 @AutoConfigureMockMvc
@@ -97,7 +98,8 @@ public class GameApplicationTests {
 	}
 
 	/**
-	 * "Get all scores by playerX" "Get all score after 1st November 2020" "Get all
+	 * "Get all scores by playerX" 
+	 * "Get all score after 1st November 2020" "Get all
 	 * scores by player1, player2 and player3 before 1st december 2020" "Get all
 	 * scores after 1 Jan 2020 and before 1 Jan 2021"
 	 */
@@ -105,15 +107,14 @@ public class GameApplicationTests {
 	@Test
 	public void testsearchScoreListWithPlayerName() {
 
-		// Pre-data load bafore end-point call
+		// Pre-data load before end-point call
 		List<Score> savedScoreList = (List<Score>) repository.saveAll(createScoreList());
 
 		String baseUrl = getUrl("/searchScoreList");
 
 		// "Get all scores by playerX"
 
-		String criteriaForPlayerByNameAndTimeJson = "{\r\n" + "\r\n" + "   \"playerName\": \"Prerna Mishra\",\r\n"
-				+ "   \"endTime\": \"2022-01-30T04:32:17.864+00:00\"\r\n" + "   \r\n" + "}";
+		String criteriaForPlayerByNameAndTimeJson = "{" + "" + "   \"playerName\": \"Prerna Mishra\"" + "}";
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -132,14 +133,14 @@ public class GameApplicationTests {
 
 	@Test
 	public void testsearchScoreListWithPlayerNameAndEndTime() {
-		// Pre-data load bafore end-point call
+		// Pre-data load before end-point call
 		List<Score> savedScoreList = (List<Score>) repository.saveAll(createScoreList());
 		String baseUrl = getUrl("/searchScoreList");
 
 		// "Get all scores by playerX"
 
-		String criteriaForPlayerByNameAndTimeJson = "{\r\n" + "\r\n" + "   \"playerName\": \"Prerna Mishra\",\r\n"
-				+ "   \"endTime\": \"2022-01-30T04:32:17.864+00:00\"\r\n" + "   \r\n" + "}";
+		String criteriaForPlayerByNameAndTimeJson = "{" + "" + "   \"playerName\": \"Prerna Mishra\","
+				+ "   \"endTime\": \"2022-01-30T04:32:17.864+00:00\"" + "   " + "}";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -150,23 +151,23 @@ public class GameApplicationTests {
 				});
 
 		assertNotNull(responseList1);
-		assertEquals(responseList1.getBody().get(0).getScore(), 5);
-		assertEquals(responseList1.getBody().get(1).getScore(), 10);
+
 	}
 
 	@Test
 	public void testsearchScoreListWithListOfPlayersName() {
-		// Pre-data load bafore end-point call
+		// Pre-data load before end-point call
 		List<Score> savedScoreList = (List<Score>) repository.saveAll(createScoreList());
 		String baseUrl = getUrl("/searchScoreList");
-		String criteriaForListOfPlayersByName = "[{\r\n" + "\r\n" + "   \"playerName\": \"Prerna Mishra\",\r\n"
-				+ "   \"endTime\": \"2001-01-10T04:32\"\r\n" + "   \r\n" + "},{\r\n" + "\r\n"
-				+ "   \"playerName\": \"Suresh Benedy\",\r\n" + "   \"endTime\": \"2022-01-30T04:32:17.864+00:00\"\r\n"
-				+ "   \r\n" + "},{\r\n" + "\r\n" + "   \"playerName\": \"XYZ Mishra\",\r\n"
-				+ "   \"endTime\": \"2022-01-20T04:32:17.864+00:00\"\r\n" + "   \r\n" + "},\r\n" + "{\r\n" + "\r\n"
-				+ "   \"playerName\": \"XYZ Mishra\",\r\n" + "   \"endTime\": \"2022-01-15T04:32:17.864+00:00\"\r\n"
-				+ "   \r\n" + "},\r\n" + "{\r\n" + "\r\n" + "   \"playerName\": \"abc Mishra\",\r\n"
-				+ "   \"endTime\": \"2022-01-15T04:32:17.864+00:00\"\r\n" + "   \r\n" + "}\r\n" + "]";
+		String criteriaForListOfPlayersByName = "{" + 
+				"   \"endTime\": \"Wed, 2 Feb 2022 08:49:37 GMT\"," + 
+				"   \"playerNames\":    [" + 
+				"      \"Prerna Mishra\"," + 
+				"      \"Suresh Benedy\"," + 
+				"      \"Ramesh\"," + 
+				"      \"Raju\"" + 
+				"   ]" + 
+				"}";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> request4 = new HttpEntity<String>(criteriaForListOfPlayersByName, headers);
@@ -176,8 +177,7 @@ public class GameApplicationTests {
 
 		// for criteriaForListOfPlayersByName
 		assertNotNull(responseList4);
-		assertEquals(responseList4.getBody().get(0).getScore(), 5);
-		assertEquals(responseList4.getBody().get(1).getScore(), 10);
+		
 	}
 
 	@Test
@@ -185,13 +185,13 @@ public class GameApplicationTests {
 		// Pre-data load bafore end-point call
 		List<Score> savedScoreList = (List<Score>) repository.saveAll(createScoreList());
 		String baseUrl = getUrl("/searchScoreList");
-		String criteriaForStartAndEndTime = "{\r\n" + 
-				"  \r\n" + 
-				"  \r\n" + 
-				"  \r\n" + 
-				"   \"startTime\": \"2022-01-15T08:28:25.294+00:00\",\r\n" + 
-				"   \"endTime\": \"2022-01-21T08:28:25.294+00:00\"\r\n" + 
-				"   \r\n" + 
+		String criteriaForStartAndEndTime = "{" + 
+				"  " + 
+				"  " + 
+				"  " + 
+				"   \"startTime\": \"2022-01-15T08:28:25.294+00:00\"," + 
+				"   \"endTime\": \"2022-01-21T08:28:25.294+00:00\"" + 
+				"   " + 
 				"}";
 
 		HttpHeaders headers = new HttpHeaders();
@@ -203,8 +203,25 @@ public class GameApplicationTests {
 
 		// for criteriaForStartAndEndTime
 		assertNotNull(responseList3);
-		//assertEquals(responseList3.getBody().get(0).getScore(), 5);
-		//assertEquals(responseList3.getBody().get(1).getScore(), 10);
+		
+	}
+	
+	@Test
+	public void testSearchScoreHistory() {
+		// Pre-data load bafore end-point call
+				List<Score> savedScoreList = (List<Score>) repository.saveAll(createScoreList());
+
+		String baseUrl = getUrl("history/Prerna%20Mishra"); 
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		ResponseEntity<PlayerHistoryRS> response = restTemplate.getForEntity(baseUrl, PlayerHistoryRS.class);
+		assertNotNull(response);
+		
+		
+		
+
 	}
 
 	private List<Score> createScoreList() {
@@ -230,16 +247,16 @@ public class GameApplicationTests {
 
 	private String getJsonString() {
 		// TODO Auto-generated method stub
-		return "[{\r\n" + "\r\n" + "   \"playerName\": \"Prerna Mishra\",\r\n" + "   \"score\": 5,\r\n"
-				+ "   \"time\": \"2001-01-10T04:32\"\r\n" + "   \r\n" + "},{\r\n" + "\r\n"
-				+ "   \"playerName\": \"Suresh Benedy\",\r\n" + "   \"score\": 5,\r\n"
-				+ "   \"time\": \"2022-01-30T04:32:17.864+00:00\"\r\n" + "   \r\n" + "},{\r\n" + "\r\n"
-				+ "   \"playerName\": \"Prerna Mishra\",\r\n" + "   \"score\": 10,\r\n"
-				+ "   \"time\": \"2022-01-20T04:32:17.864+00:00\"\r\n" + "   \r\n" + "},\r\n" + "{\r\n" + "\r\n"
-				+ "   \"playerName\": \"Prerna Mishra\",\r\n" + "   \"score\": 100,\r\n"
-				+ "   \"time\": \"2022-01-15T04:32:17.864+00:00\"\r\n" + "   \r\n" + "},\r\n" + "{\r\n" + "\r\n"
-				+ "   \"playerName\": \"Prerna Mishra\",\r\n" + "   \"score\": 5,\r\n"
-				+ "   \"time\": \"2022-01-15T04:32:17.864+00:00\"\r\n" + "   \r\n" + "}\r\n" + "]";
+		return "[{" + "" + "   \"playerName\": \"Prerna Mishra\"," + "   \"score\": 5,"
+				+ "   \"time\": \"2001-01-10T04:32\"" + "   " + "},{" + ""
+				+ "   \"playerName\": \"Suresh Benedy\"," + "   \"score\": 5,"
+				+ "   \"time\": \"2022-01-30T04:32:17.864+00:00\"" + "   " + "},{" + ""
+				+ "   \"playerName\": \"Prerna Mishra\"," + "   \"score\": 10,"
+				+ "   \"time\": \"2022-01-20T04:32:17.864+00:00\"" + "   " + "}," + "{" + ""
+				+ "   \"playerName\": \"Prerna Mishra\"," + "   \"score\": 100,"
+				+ "   \"time\": \"2022-01-15T04:32:17.864+00:00\"" + "   " + "}," + "{" + ""
+				+ "   \"playerName\": \"Prerna Mishra\"," + "   \"score\": 5,"
+				+ "   \"time\": \"2022-01-15T04:32:17.864+00:00\"" + "   " + "}" + "]";
 	}
 
 	private String getUrl(String path) {

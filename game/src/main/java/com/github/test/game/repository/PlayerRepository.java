@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 import com.github.test.game.domain.Score;
 
@@ -15,21 +16,21 @@ public interface PlayerRepository extends PagingAndSortingRepository<Score, Inte
 	@Query(value = "select * FROM Score WHERE lower(playerName) = lower(?) order by time", nativeQuery = true)
 	public List<Score> findPlayers(String playerName);
 
-	@Query(value = "select * FROM Score WHERE time > ? and time < ? ", nativeQuery = true)
-	public List<Score> findAllPlayersForPeriod(Timestamp start, Timestamp end,Pageable sortedByName);
-
-	@Query(value = "select * FROM Score WHERE time > ? ", nativeQuery = true)
-	public List<Score> findAllPlayersForPeriod(Timestamp start,Pageable sortedByName);
-
-	@Query(value = "select * FROM Score WHERE playerName in ? and time < ? ", nativeQuery = true)
-	public List<Score> findAllPlayersForPeriod(List<String> playerNames, Timestamp end, Pageable sortedByName);
-
 	public List<Score> findByPlayerNameAndScore(String playerName, Integer score);
 
 	public List<Score> findByScore(Integer score);
 
 	public Optional<Score> findById(Integer id);
 
-	@Query(value = "select * FROM Score WHERE lower(playerName) = lower(?) ", nativeQuery = true)
-	public List<Score> findAllByPlayerName(String playerName, Pageable sortedByName);
+	@Query(value = "FROM Score WHERE lower(playerName) = lower(:playerName) ")
+	public List<Score> findAllByPlayerName(@Param("playerName")String playerName, Pageable sortedByName);
+	
+	@Query(value = "FROM Score WHERE time > :start and time < :end ")
+	public List<Score> findAllPlayersForPeriod(@Param("start")Timestamp start, @Param("end")Timestamp end, Pageable sortedByName);
+
+	@Query(value = "FROM Score WHERE time > :start ")
+	public List<Score> findAllPlayersForPeriod(@Param("start")Timestamp start, Pageable sortedByName);
+
+	@Query(value = "FROM Score WHERE playerName in :playerName and time < :end ")
+	public List<Score> findAllPlayersForPeriod(@Param("playerName") List<String> playerNames, @Param("end")Timestamp end, Pageable sortedByName);
 }
