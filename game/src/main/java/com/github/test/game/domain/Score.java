@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.github.test.game.customizer.DateSeralizeCustomizer;
+
 @Entity(name = "Score")
 public class Score {
 	@Id
@@ -21,6 +24,7 @@ public class Score {
 	@Column(name = "SCORE")
 	private Integer score;
 
+	@JsonSerialize(using = DateSeralizeCustomizer.class)
 	@Column(name = "TIME")
 	private Timestamp time;
 

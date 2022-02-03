@@ -6,6 +6,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.github.test.game.customizer.DateSeralizeCustomizer;
 
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "id", "playerName", "score", "startTime", "endTime", "pageNo", "pageSize" })
@@ -22,9 +24,11 @@ public class ConditionRQ {
 	@JsonProperty("score")
 	private Integer score;
 
+	@JsonSerialize(using = DateSeralizeCustomizer.class)
 	@JsonProperty("startTime")
 	private Timestamp startTime;
 
+	@JsonSerialize(using = DateSeralizeCustomizer.class)
 	@JsonProperty("endTime")
 	private Timestamp endTime;
 
