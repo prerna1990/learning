@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="9" passed="9">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="713" started-at="2022-02-04T20:27:40 IST" finished-at="2022-02-04T20:27:41 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="713" started-at="2022-02-04T20:27:40 IST" finished-at="2022-02-04T20:27:41 IST">
+      <class name="com.github.test.game.GameServiceTest">
+        <test-method status="PASS" signature="init()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="init" is-config="true" duration-ms="418" started-at="2022-02-04T20:27:40 IST" finished-at="2022-02-04T20:27:40 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="testDeleteById()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="testDeleteById" duration-ms="23" started-at="2022-02-04T20:27:40 IST" finished-at="2022-02-04T20:27:40 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDeleteById -->
+        <test-method status="PASS" signature="init()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="init" is-config="true" duration-ms="1" started-at="2022-02-04T20:27:40 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="testFindHistory()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="testFindHistory" duration-ms="204" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindHistory -->
+        <test-method status="PASS" signature="init()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="init" is-config="true" duration-ms="1" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="testScoreListByName()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="testScoreListByName" duration-ms="3" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScoreListByName -->
+        <test-method status="PASS" signature="init()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="init" is-config="true" duration-ms="0" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="testScoreListByScore()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="testScoreListByScore" duration-ms="3" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScoreListByScore -->
+        <test-method status="PASS" signature="init()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="init" is-config="true" duration-ms="1" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="testScoreListPageByAfterStartTime()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="testScoreListPageByAfterStartTime" duration-ms="8" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScoreListPageByAfterStartTime -->
+        <test-method status="PASS" signature="init()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="init" is-config="true" duration-ms="1" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="testScoreListPageByName()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="testScoreListPageByName" duration-ms="2" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScoreListPageByName -->
+        <test-method status="PASS" signature="init()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="init" is-config="true" duration-ms="1" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="testScoreListPageByPlayerNamesAndEndTimePeriod()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="testScoreListPageByPlayerNamesAndEndTimePeriod" duration-ms="2" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScoreListPageByPlayerNamesAndEndTimePeriod -->
+        <test-method status="PASS" signature="init()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="init" is-config="true" duration-ms="1" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="testScoreListPageByStartAndEndTimePeriod()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="testScoreListPageByStartAndEndTimePeriod" duration-ms="2" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScoreListPageByStartAndEndTimePeriod -->
+        <test-method status="PASS" signature="testsave()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="testsave" duration-ms="3" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testsave -->
+        <test-method status="PASS" signature="init()[pri:0, instance:com.github.test.game.GameServiceTest@2c039ac6]" name="init" is-config="true" duration-ms="0" started-at="2022-02-04T20:27:41 IST" finished-at="2022-02-04T20:27:41 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+      </class> <!-- com.github.test.game.GameServiceTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

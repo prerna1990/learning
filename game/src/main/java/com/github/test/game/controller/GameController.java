@@ -1,7 +1,5 @@
 package com.github.test.game.controller;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +18,6 @@ import com.github.test.game.dto.PlayerHistoryRS;
 import com.github.test.game.service.GameService;
 
 @RestController
-//@RequestMapping("/game")
 public class GameController {
 
 	@Autowired
@@ -92,9 +89,8 @@ public class GameController {
 	}
 
 	private String removeHtml(String playerName) {
-		
-		return playerName.replaceAll("%20"," ");
-	}
 
+		return playerName.replaceAll("%20", " ");
+	}
 
 }

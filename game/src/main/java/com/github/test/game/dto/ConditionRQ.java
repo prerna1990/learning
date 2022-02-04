@@ -1,6 +1,7 @@
 package com.github.test.game.dto;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -95,7 +96,12 @@ public class ConditionRQ {
 	}
 
 	public List<String> getPlayerNames() {
-		return playerNames;
+
+		if (playerNames == null) {
+			playerNames = new ArrayList<String>();
+		}
+		return this.playerNames;
+
 	}
 
 	public void setPlayerNames(List<String> playerNames) {
